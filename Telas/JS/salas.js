@@ -12,40 +12,27 @@ var modalForm = document.getElementById("modal-form");
 var modalExcluir = document.getElementById("modal-excluir");
 var aviso = document.getElementById("aviso");
 
-function carregarSalas() {
-    var dados = localStorage.getItem("salas");
-    if (dados) {
-        salas = JSON.parse(dados);
-    } else {
-        salas = [
-            { id: 1, numero: "Sala 01", capacidade: 15 },
-            { id: 2, numero: "Sala 02", capacidade: 20 },
-            { id: 3, numero: "Sala 03", capacidade: 12 }
-        ];
-        salvarSalas();
-    }
-}
-
-function salvarSalas() {
-    localStorage.setItem("salas", JSON.stringify(salas));
-}
-
-function proximoId() {
-    var maior = 0;
-    for (var i = 0; i < salas.length; i++) {
-        if (salas[i].id > maior) {
-            maior = salas[i].id;
-        }
-    }
-    return maior + 1;
-}
-
 function mostrarAviso(texto) {
     aviso.textContent = texto;
     aviso.className = "aviso mostrar";
     setTimeout(function () {
         aviso.className = "aviso";
     }, 2500);
+}
+
+async function carregarSalas() {
+    tabela.innerHTML = "<tr><td colspan='4' class='vazio'>Carregando...</td></tr>";
+    try {
+        var resposta = await fetch("/api/salas");
+        if (!resposta.ok) {
+            throw new Error("Falha ao carregar salas");
+        }
+        salas = await resposta.json();
+    } catch (e) {
+        salas = [];
+        mostrarAviso("Não foi possível carregar as salas. Tente novamente.");
+    }
+    listarSalas();
 }
 
 function listarSalas() {
@@ -99,7 +86,7 @@ document.getElementById("btn-nova").addEventListener("click", function () {
 
 document.getElementById("btn-cancelar").addEventListener("click", fecharFormulario);
 
-document.getElementById("form-sala").addEventListener("submit", function (evento) {
+document.getElementById("form-sala").addEventListener("submit", async function (evento) {
     evento.preventDefault();
 
     var numero = campoNumero.value.trim();
@@ -114,29 +101,34 @@ document.getElementById("form-sala").addEventListener("submit", function (evento
         return;
     }
 
-    for (var i = 0; i < salas.length; i++) {
-        if (salas[i].numero.toLowerCase() === numero.toLowerCase() && String(salas[i].id) !== campoId.value) {
-            erro.textContent = "Já existe uma sala com esse nome.";
+    var ehEdicao = campoId.value !== "";
+    var url = ehEdicao ? "/api/salas/" + campoId.value : "/api/salas";
+    var metodo = ehEdicao ? "PUT" : "POST";
+
+    var botaoSalvar = evento.target.querySelector("button[type='submit']");
+    botaoSalvar.disabled = true;
+
+    try {
+        var resposta = await fetch(url, {
+            method: metodo,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ numero: numero, capacidade: capacidade })
+        });
+        var dados = await resposta.json();
+
+        if (!resposta.ok) {
+            erro.textContent = dados.erro || "Não foi possível salvar a sala.";
             return;
         }
-    }
 
-    if (campoId.value === "") {
-        salas.push({ id: proximoId(), numero: numero, capacidade: capacidade });
-        mostrarAviso("Sala cadastrada com sucesso!");
-    } else {
-        for (var j = 0; j < salas.length; j++) {
-            if (String(salas[j].id) === campoId.value) {
-                salas[j].numero = numero;
-                salas[j].capacidade = capacidade;
-            }
-        }
-        mostrarAviso("Sala alterada com sucesso!");
+        fecharFormulario();
+        await carregarSalas();
+        mostrarAviso(ehEdicao ? "Sala alterada com sucesso!" : "Sala cadastrada com sucesso!");
+    } catch (e) {
+        erro.textContent = "Erro de conexão. Tente novamente.";
+    } finally {
+        botaoSalvar.disabled = false;
     }
-
-    salvarSalas();
-    fecharFormulario();
-    listarSalas();
 });
 
 function consultarSala(id) {
@@ -182,22 +174,21 @@ document.getElementById("btn-nao").addEventListener("click", function () {
     modalExcluir.className = "fundo-modal";
 });
 
-document.getElementById("btn-sim").addEventListener("click", function () {
-    var novaLista = [];
-    for (var i = 0; i < salas.length; i++) {
-        if (salas[i].id !== idParaExcluir) {
-            novaLista.push(salas[i]);
+document.getElementById("btn-sim").addEventListener("click", async function () {
+    try {
+        var resposta = await fetch("/api/salas/" + idParaExcluir, { method: "DELETE" });
+        if (!resposta.ok && resposta.status !== 204) {
+            throw new Error("Falha ao excluir");
         }
+        modalExcluir.className = "fundo-modal";
+        await carregarSalas();
+        mostrarAviso("Sala excluída com sucesso!");
+    } catch (e) {
+        modalExcluir.className = "fundo-modal";
+        mostrarAviso("Não foi possível excluir a sala.");
     }
-    salas = novaLista;
-
-    salvarSalas();
-    modalExcluir.className = "fundo-modal";
-    listarSalas();
-    mostrarAviso("Sala excluída com sucesso!");
 });
 
 busca.addEventListener("input", listarSalas);
 
 carregarSalas();
-listarSalas();
