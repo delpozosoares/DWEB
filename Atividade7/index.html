@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedra, Papel e Tesoura</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="jogo">
+        <h1>Pedra, Papel e Tesoura</h1>
+
+        <section class="placar">
+            <div>
+                <span class="rotulo">Você</span>
+                <span id="pontos-usuario" class="pontos">0</span>
+            </div>
+            <div>
+                <span class="rotulo">Empates</span>
+                <span id="pontos-empate" class="pontos">0</span>
+            </div>
+            <div>
+                <span class="rotulo">Computador</span>
+                <span id="pontos-computador" class="pontos">0</span>
+            </div>
+        </section>
+
+        <p class="instrucao">Escolha sua jogada:</p>
+
+        <section class="opcoes">
+            <button class="opcao azul" onclick="jogar(1)">
+                <span class="emoji">✊</span>
+                Pedra
+            </button>
+            <button class="opcao vermelho" onclick="jogar(2)">
+                <span class="emoji">✋</span>
+                Papel
+            </button>
+            <button class="opcao verde" onclick="jogar(3)">
+                <span class="emoji">✌️</span>
+                Tesoura
+            </button>
+        </section>
+
+        <p id="resultado" class="resultado">Faça sua jogada!</p>
+
+        <button class="reiniciar" onclick="reiniciar()">Reiniciar placar</button>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+</html>
