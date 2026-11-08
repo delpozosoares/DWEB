@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vikings School - Alunos</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+    <aside class="menu">
+        <div class="logo">
+            Vikings <span>School</span>
+            <small>Gestão escolar</small>
+        </div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="salas.html">Salas</a>
+            <a href="alunos.html" class="ativo">Alunos</a>
+            <a href="frequencia.html">Lançar frequência</a>
+            <a href="presencas.html">Consultar frequência</a>
+            <a href="justificar.html">Justificar falta</a>
+        </nav>
+        <div class="rodape-menu">JVL Sistemas</div>
+    </aside>
+
+    <main class="conteudo">
+
+        <div class="titulo-pagina">
+            <h1>Gerenciar Alunos</h1>
+            <p>Cadastre, consulte, altere e exclua os alunos da escola (RF05)</p>
+        </div>
+
+        <div class="caixa">
+            <div class="ferramentas">
+                <input type="text" id="busca" placeholder="Consultar aluno pelo nome...">
+                <button class="botao botao-dourado" id="btn-novo">+ Novo aluno</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Turma</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-alunos"></tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <div class="fundo-modal" id="modal-form">
+        <div class="modal">
+            <h2 id="titulo-form">Novo aluno</h2>
+            <form id="form-aluno">
+                <input type="hidden" id="id-aluno">
+
+                <div class="campo">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" placeholder="Nome completo">
+                </div>
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <input type="text" id="email" placeholder="aluno@email.com">
+                </div>
+                <div class="campo">
+                    <label for="telefone">Telefone</label>
+                    <input type="text" id="telefone" placeholder="(11) 90000-0000">
+                </div>
+                <div class="campo">
+                    <label for="nascimento">Data de nascimento</label>
+                    <input type="date" id="nascimento">
+                </div>
+                <div class="campo">
+                    <label for="turma">Turma</label>
+                    <select id="turma"></select>
+                </div>
+
+                <p class="erro" id="erro"></p>
+
+                <div class="botoes-modal">
+                    <button type="button" class="botao botao-claro" id="btn-cancelar">Cancelar</button>
+                    <button type="submit" class="botao">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="fundo-modal" id="modal-excluir">
+        <div class="modal">
+            <h2>Excluir aluno</h2>
+            <p id="texto-excluir"></p>
+            <div class="botoes-modal">
+                <button class="botao botao-claro" id="btn-nao">Cancelar</button>
+                <button class="botao botao-vermelho" id="btn-sim">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fundo-modal" id="modal-detalhes">
+        <div class="modal">
+            <h2>Dados do aluno</h2>
+            <div class="detalhe" id="dados-aluno"></div>
+            <div class="botoes-modal">
+                <button class="botao" id="btn-fechar-detalhes">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="aviso" id="aviso"></div>
+
+    <script src="../JS/dados.js"></script>
+    <script src="../JS/alunos.js"></script>
+</body>
+</html>

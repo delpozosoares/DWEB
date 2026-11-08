@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vikings School - Dashboard</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+    <aside class="menu">
+        <div class="logo">
+            Vikings <span>School</span>
+            <small>Gestão escolar</small>
+        </div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="dashboard.html" class="ativo">Dashboard</a>
+            <a href="salas.html">Salas</a>
+            <a href="alunos.html">Alunos</a>
+            <a href="frequencia.html">Lançar frequência</a>
+            <a href="presencas.html">Consultar frequência</a>
+            <a href="justificar.html">Justificar falta</a>
+        </nav>
+        <div class="rodape-menu">JVL Sistemas</div>
+    </aside>
+
+    <main class="conteudo">
+
+        <div class="titulo-pagina">
+            <h1>Dashboard</h1>
+            <p>Resumo geral da escola</p>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <span>Alunos matriculados</span>
+                <strong id="total-alunos">0</strong>
+            </div>
+            <div class="card dourado">
+                <span>Professores</span>
+                <strong id="total-professores">0</strong>
+            </div>
+            <div class="card verde">
+                <span>Turmas</span>
+                <strong id="total-turmas">0</strong>
+            </div>
+            <div class="card vermelho">
+                <span>Salas cadastradas</span>
+                <strong id="total-salas">0</strong>
+            </div>
+        </div>
+
+        <div class="caixa">
+            <h2>Próximas aulas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Turma</th>
+                        <th>Professor</th>
+                        <th>Dia</th>
+                        <th>Horário</th>
+                        <th>Sala</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-aulas"></tbody>
+            </table>
+        </div>
+
+        <div class="caixa">
+            <h2>Capacidade das salas</h2>
+            <div id="grafico-salas"></div>
+        </div>
+
+    </main>
+
+    <script src="../JS/dados.js"></script>
+    <script src="../JS/dashboard.js"></script>
+</body>
+</html>

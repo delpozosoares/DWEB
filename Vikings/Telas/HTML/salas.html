@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vikings School - Salas</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+    <aside class="menu">
+        <div class="logo">
+            Vikings <span>School</span>
+            <small>Gestão escolar</small>
+        </div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="salas.html" class="ativo">Salas</a>
+            <a href="alunos.html">Alunos</a>
+            <a href="frequencia.html">Lançar frequência</a>
+            <a href="presencas.html">Consultar frequência</a>
+            <a href="justificar.html">Justificar falta</a>
+        </nav>
+        <div class="rodape-menu">JVL Sistemas</div>
+    </aside>
+
+    <main class="conteudo">
+
+        <div class="titulo-pagina">
+            <h1>Gerenciar Salas</h1>
+            <p>Cadastre, consulte, altere e exclua as salas da escola (RF08)</p>
+        </div>
+
+        <div class="caixa">
+            <div class="ferramentas">
+                <input type="text" id="busca" placeholder="Consultar sala pelo nome...">
+                <button class="botao botao-dourado" id="btn-nova">+ Nova sala</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Número / Nome</th>
+                        <th>Capacidade</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-salas"></tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <div class="fundo-modal" id="modal-form">
+        <div class="modal">
+            <h2 id="titulo-form">Nova sala</h2>
+            <form id="form-sala">
+                <input type="hidden" id="id-sala">
+
+                <div class="campo">
+                    <label for="numero">Número / Nome</label>
+                    <input type="text" id="numero" placeholder="Ex: Sala 01">
+                </div>
+                <div class="campo">
+                    <label for="capacidade">Capacidade (alunos)</label>
+                    <input type="number" id="capacidade" min="1" placeholder="Ex: 20">
+                </div>
+
+                <p class="erro" id="erro"></p>
+
+                <div class="botoes-modal">
+                    <button type="button" class="botao botao-claro" id="btn-cancelar">Cancelar</button>
+                    <button type="submit" class="botao">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="fundo-modal" id="modal-excluir">
+        <div class="modal">
+            <h2>Excluir sala</h2>
+            <p id="texto-excluir"></p>
+            <div class="botoes-modal">
+                <button class="botao botao-claro" id="btn-nao">Cancelar</button>
+                <button class="botao botao-vermelho" id="btn-sim">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fundo-modal" id="modal-detalhes">
+        <div class="modal">
+            <h2>Dados da sala</h2>
+            <div class="detalhe" id="dados-sala"></div>
+            <div class="botoes-modal">
+                <button class="botao" id="btn-fechar-detalhes">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="aviso" id="aviso"></div>
+
+    <script src="../JS/salas.js"></script>
+</body>
+</html>

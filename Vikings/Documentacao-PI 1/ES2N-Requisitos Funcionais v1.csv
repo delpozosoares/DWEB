@@ -1,0 +1,53 @@
+﻿LISTA DE REQUISITOS FUNCIONAIS ;;;;
+;;;;
+GRUPO: JVL Sistemas;;;;
+DATA: 03/09/2026;;;;
+;;;;
+** Prioridade: Alta (Muito Importante), Média (Importante), Baixa (Não tão importante);;;;
+;;;;
+;;;;
+Código;Nome;Descrição;Prioridade (Alta, Média, Baixa);Requisito(s) que é  (são) executado(s) ou pode(m) ser executado(s) na sequência (INCLUDE OU EXTEND)
+RF01;Fazer login;Esse requisito permite ao usuário acessar o sistema;Alta;Pode executar RF02
+RF02;Recuperar Senha;Esse requisito permite ao usuário recuperar sua senha, caso tenha esquecido;Média;
+RF03;Cadastrar Aluno;Esse requisito permite registrar os dados de um novo aluno na escola;Alta;Pode executar RF07
+RF04;Consultar Aluno;Esse requisito permite buscar e visualizar os dados cadastrais de um aluno;Alta;Pode executar RF05
+RF05;Editar Aluno;Esse requisito permite alterar as informações de um aluno já cadastrado;Alta;Deve executar RF04
+RF06;Inativar Aluno;Esse requisito permite desativar o cadastro de um aluno que saiu da escola;Média;Deve executar RF04
+RF07;Matricular Aluno;Esse requisito permite incluir um aluno em uma turma com vagas disponíveis;Alta;Pode executar RF08
+RF08;Transferir Aluno;Esse requisito permite mudar um aluno matriculado de uma turma para outra;Média;Deve executar RF04
+RF09;Gerenciar Salas;Esse requisito permite cadastrar, alterar e consultar as salas físicas da escola;Alta;Deve executar RF04
+RF10;Gerenciar Turmas;Esse requisito permite criar, alterar e consultar as turmas, vinculando professor e horário;Alta;Pode executar RF11
+RF11;Encerrar Turma;Esse requisito permite fechar uma turma que já terminou o curso;Baixa;Deve executar RF10
+RF12;Lançar Frequência;Esse requisito permite ao professor registrar as presenças e faltas do dia;Alta;Pode executar RF13
+RF13;Justificar Falta;Esse requisito permite registrar o motivo ou atestado de uma falta do aluno;Média;
+RF14;Consultar Frequência;Esse requisito permite visualizar o relatório e o histórico de faltas de um aluno;Alta;
+RF15;Fazer Logout;Esse requisito permite ao usuário sair do sistema com segurança;Alta;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+*** gerenciar é utilizado sempre que tiver um CRUD (leitura, cadastro, alteração e exclusão), para não precisar fazer cada um separadamente;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;

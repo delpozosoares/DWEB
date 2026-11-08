@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vikings School - Consultar Frequência</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+    <aside class="menu">
+        <div class="logo">
+            Vikings <span>School</span>
+            <small>Gestão escolar</small>
+        </div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="salas.html">Salas</a>
+            <a href="alunos.html">Alunos</a>
+            <a href="frequencia.html">Lançar frequência</a>
+            <a href="presencas.html" class="ativo">Consultar frequência</a>
+            <a href="justificar.html">Justificar falta</a>
+        </nav>
+        <div class="rodape-menu">JVL Sistemas</div>
+    </aside>
+
+    <main class="conteudo">
+
+        <div class="titulo-pagina">
+            <h1>Consultar Frequência</h1>
+            <p>Veja as presenças e faltas dos alunos por aluno, turma ou período (RF13)</p>
+        </div>
+
+        <div class="caixa">
+            <div class="ferramentas">
+                <div class="grupo">
+                    <div class="campo">
+                        <label for="busca">Aluno</label>
+                        <input type="text" id="busca" placeholder="Buscar pelo nome...">
+                    </div>
+                    <div class="campo">
+                        <label for="filtro-turma">Turma</label>
+                        <select id="filtro-turma">
+                            <option value="">Todas as turmas</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="data-inicio">Período - de</label>
+                        <input type="date" id="data-inicio">
+                    </div>
+                    <div class="campo">
+                        <label for="data-fim">até</label>
+                        <input type="date" id="data-fim">
+                    </div>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Turma</th>
+                        <th>Aulas</th>
+                        <th>Presenças</th>
+                        <th>Faltas</th>
+                        <th>% Presença</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-resumo"></tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <div class="fundo-modal" id="modal-historico">
+        <div class="modal largo">
+            <h2 id="titulo-historico"></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Situação</th>
+                        <th>Justificativa</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-historico"></tbody>
+            </table>
+            <div class="botoes-modal">
+                <button class="botao" id="btn-fechar-historico">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../JS/dados.js"></script>
+    <script src="../JS/presencas.js"></script>
+</body>
+</html>

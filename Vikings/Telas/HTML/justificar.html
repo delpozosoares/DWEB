@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vikings School - Justificar Falta</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+    <aside class="menu">
+        <div class="logo">
+            Vikings <span>School</span>
+            <small>Gestão escolar</small>
+        </div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="salas.html">Salas</a>
+            <a href="alunos.html">Alunos</a>
+            <a href="frequencia.html">Lançar frequência</a>
+            <a href="presencas.html">Consultar frequência</a>
+            <a href="justificar.html" class="ativo">Justificar falta</a>
+        </nav>
+        <div class="rodape-menu">JVL Sistemas</div>
+    </aside>
+
+    <main class="conteudo">
+
+        <div class="titulo-pagina">
+            <h1>Justificar Falta</h1>
+            <p>Selecione a falta e informe o motivo ou o atestado (RF14)</p>
+        </div>
+
+        <div class="caixa">
+            <div class="ferramentas">
+                <div class="grupo">
+                    <div class="campo">
+                        <label for="busca">Aluno</label>
+                        <input type="text" id="busca" placeholder="Buscar pelo nome...">
+                    </div>
+                    <div class="campo">
+                        <label for="filtro-turma">Turma</label>
+                        <select id="filtro-turma">
+                            <option value="">Todas as turmas</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="filtro-status">Situação</label>
+                        <select id="filtro-status">
+                            <option value="pendentes">Sem justificativa</option>
+                            <option value="justificadas">Justificadas</option>
+                            <option value="todas">Todas as faltas</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Turma</th>
+                        <th>Data da falta</th>
+                        <th>Situação</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-faltas"></tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <div class="fundo-modal" id="modal-justificar">
+        <div class="modal">
+            <h2>Justificar falta</h2>
+            <p id="texto-falta"></p>
+            <div class="campo">
+                <label for="justificativa">Motivo</label>
+                <textarea id="justificativa" rows="4" placeholder="Ex: Consulta médica"></textarea>
+            </div>
+            <div class="campo">
+                <label for="atestado">Atestado (opcional)</label>
+                <input type="file" id="atestado">
+                <p id="atestado-atual"></p>
+            </div>
+            <p class="erro" id="erro"></p>
+            <div class="botoes-modal">
+                <button class="botao botao-claro" id="btn-cancelar">Cancelar</button>
+                <button class="botao" id="btn-continuar">Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fundo-modal" id="modal-confirmar">
+        <div class="modal">
+            <h2>Confirmar justificativa</h2>
+            <p>Deseja registrar esta justificativa para a falta selecionada?</p>
+            <div class="botoes-modal">
+                <button class="botao botao-claro" id="btn-voltar">Voltar</button>
+                <button class="botao botao-dourado" id="btn-confirmar">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="aviso" id="aviso"></div>
+
+    <script src="../JS/dados.js"></script>
+    <script src="../JS/justificar.js"></script>
+</body>
+</html>

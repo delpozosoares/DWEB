@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vikings School - Lançar Frequência</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+    <aside class="menu">
+        <div class="logo">
+            Vikings <span>School</span>
+            <small>Gestão escolar</small>
+        </div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="salas.html">Salas</a>
+            <a href="alunos.html">Alunos</a>
+            <a href="frequencia.html" class="ativo">Lançar frequência</a>
+            <a href="presencas.html">Consultar frequência</a>
+            <a href="justificar.html">Justificar falta</a>
+        </nav>
+        <div class="rodape-menu">JVL Sistemas</div>
+    </aside>
+
+    <main class="conteudo">
+
+        <div class="titulo-pagina">
+            <h1>Lançar Frequência</h1>
+            <p>Registre presenças e faltas do diário de classe (RF12)</p>
+        </div>
+
+        <div class="caixa">
+            <div class="ferramentas">
+                <div class="grupo">
+                    <div class="campo">
+                        <label for="turma">Turma</label>
+                        <select id="turma"></select>
+                    </div>
+                    <div class="campo">
+                        <label for="data">Data da aula</label>
+                        <input type="date" id="data">
+                    </div>
+                    <button class="botao" id="btn-carregar">Carregar alunos</button>
+                </div>
+            </div>
+            <p class="erro" id="erro"></p>
+        </div>
+
+        <div class="caixa oculto" id="area-lista">
+            <h2 id="titulo-lista"></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Situação</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-alunos"></tbody>
+            </table>
+            <div class="rodape-tabela">
+                <button class="botao botao-claro" id="btn-todos">Marcar todos presentes</button>
+                <button class="botao botao-dourado" id="btn-salvar">Salvar frequência</button>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="aviso" id="aviso"></div>
+
+    <script src="../JS/dados.js"></script>
+    <script src="../JS/frequencia.js"></script>
+</body>
+</html>
